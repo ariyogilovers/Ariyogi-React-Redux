@@ -32,9 +32,6 @@ const Post = (props) => {
   const navigate = useNavigate();
   return (
     <div className="post">
-      <div className="img-thumb">
-        <img src="https://placeimg.com/200/150/tech" alt="" />
-      </div>
       <div className="content">
         <p
           className="title"
@@ -43,7 +40,7 @@ const Post = (props) => {
           {props.data.title}
         </p>
         <p className="desc">{props.data.desc}</p>
-        <p className="body">{props.data.body}</p>
+        <p className="body">{props.data.content}</p>
         <button className="remove" onClick={() => props.remove(props.data.id)}>
           Remove
         </button>
@@ -51,6 +48,9 @@ const Post = (props) => {
           Update
         </button>
       </div>
+      {/* <div className="img-thumb">
+        <img src="https://placeimg.com/200/150/tech" alt="" />
+      </div> */}
     </div>
   );
 };

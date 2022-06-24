@@ -52,14 +52,14 @@ const DetailPost = (props) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3004/posts/${postId}`)
+      .get(`https://test-json-serverq.herokuapp.com/posts/${postId}`)
       .then((res) => setPost(res.data));
   }, []);
 
   return (
     <div className="p-detail-post">
       <p className="detail-title">{post.title}</p>
-      <p className="detail-body">{post.body}</p>
+      <p className="detail-body">{post.content}</p>
     </div>
   );
 };

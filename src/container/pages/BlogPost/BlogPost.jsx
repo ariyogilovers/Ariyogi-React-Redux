@@ -8,7 +8,7 @@ class BlogPost extends Component {
     formBlogPost: {
       id: 1,
       title: "",
-      body: "",
+      content: "",
       userId: 1,
     },
     isUpdate: false,
@@ -16,7 +16,7 @@ class BlogPost extends Component {
 
   getPostApi = () => {
     axios
-      .get("http://localhost:3004/posts?_sort=id&_order=desc")
+      .get("https://test-json-serverq.herokuapp.com/posts?_sort=id&_order=desc")
       .then((result) => {
         this.setState({
           post: result.data,
@@ -26,10 +26,12 @@ class BlogPost extends Component {
 
   handleRemove = (data) => {
     // console.log(data);
-    axios.delete(`http://localhost:3004/posts/${data}`).then((result) => {
-      //   console.log(result);
-      this.getPostApi();
-    });
+    axios
+      .delete(`https://test-json-serverq.herokuapp.com/posts/${data}`)
+      .then((result) => {
+        //   console.log(result);
+        this.getPostApi();
+      });
   };
 
   handleUpdate = (data) => {
@@ -47,7 +49,10 @@ class BlogPost extends Component {
 
   postDataToApi = () => {
     axios
-      .post("http://localhost:3004/posts", this.state.formBlogPost)
+      .post(
+        "https://test-json-serverq.herokuapp.com/posts",
+        this.state.formBlogPost
+      )
       .then((result) => {
         console.log("resul", result);
         this.getPostApi();
@@ -55,7 +60,7 @@ class BlogPost extends Component {
           formBlogPost: {
             id: 1,
             title: "",
-            body: "",
+            content: "",
             userId: 1,
           },
         });
@@ -68,7 +73,7 @@ class BlogPost extends Component {
   putDataToApi = () => {
     axios
       .put(
-        `http://localhost:3004/posts/${this.state.formBlogPost.id}`,
+        `https://test-json-serverq.herokuapp.com/posts/${this.state.formBlogPost.id}`,
         this.state.formBlogPost
       )
       .then((result) => {
@@ -79,7 +84,7 @@ class BlogPost extends Component {
           formBlogPost: {
             id: 1,
             title: "",
-            body: "",
+            content: "",
             userId: 1,
           },
         });
@@ -144,8 +149,8 @@ class BlogPost extends Component {
           <label htmlFor="body-content">Blog Content</label>
           <textarea
             name="body-content"
-            id="body"
-            value={this.state.formBlogPost.body}
+            id="content"
+            value={this.state.formBlogPost.content}
             cols="30"
             rows="10"
             placeholder="add body"
